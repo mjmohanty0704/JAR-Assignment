@@ -43,7 +43,7 @@ print("\nAverage price of an item sold at each branch of the city:")
 print(average_price_per_branch)
 print('--------------------------------------------------------------------------------------------------------------')
 
-# C.1 Analyze the performance of sales and revenue, January to March across the Product line, Gender, and Payment Method
+# C.1 Analyzing the performance of sales and revenue, January to March across the Product line, Gender, and Payment Method
 data['Date'] = pd.to_datetime(data['Date'])
 jan_march_data = data[(data['Date'].dt.month >= 1) & (data['Date'].dt.month <= 3)]
 jan_march_performance = jan_march_data.groupby(['Product line', 'Gender', 'Payment']).agg({'Quantity': 'sum', 'Unit price': 'sum'})
@@ -51,20 +51,20 @@ print("\nPerformance from January to March across Product line, Gender, and Paym
 print(jan_march_performance)
 print('--------------------------------------------------------------------------------------------------------------')
 
-# C.2 Identify potential focus areas based on jan_march_performance
-# Find the overall mean/median revenue
+# C.2 Identifying potential focus areas based on jan_march_performance
+# Finding the overall mean/average revenue
 overall_revenue_mean = jan_march_performance['Unit price'].mean()
 
-# Filter groups with revenue below a certain threshold (overall_revenue_mean * 0.75, considering 75% as our threshold)
+# Filtering groups with revenue below a certain threshold (overall_revenue_mean * 0.75, considering 75% as our threshold)
 low_revenue_areas = jan_march_performance[jan_march_performance['Unit price'] < overall_revenue_mean * 0.75]
 
-# Focus on groups with the largest decrease from overall data
-# Print the identified focus areas
+# Focusing on groups with the largest decrease from overall data
+# Printing the identified focus areas
 print("\n**Potential Focus Areas for April based on analysis of data from January-March :")
 if not low_revenue_areas.empty:
     print(low_revenue_areas)
 else:
-    print("No significant areas with low revenue identified based on the chosen threshold.")
+    print("Good to go!!!")
 print('--------------------------------------------------------------------------------------------------------------')
 ```
 ---
